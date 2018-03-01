@@ -14,10 +14,10 @@
 <table class="tableau">
  <tr>
  <th><a href='/trier/id/<%=objOrdre._id%>'>ID</a></th>
- <th><a href='/trier/nom/<%=objOrdre.nom%>'>Nom</a></th> 
- <th><a href='/trier/prenom/<%=objOrdre.prenom%>'>Prénom</a></th>
- <th><a href='/trier/telephone/<%=objOrdre.telephone%>'>Téléphone</a></th>
- <th><a href='/trier/courriel/<%=objOrdre.courriel%>'>Courriel</a></th>
+ <th><a href='/trier/nom/<%=objOrdre.nom%>'><%= __('Nom') %></a></th> 
+ <th><a href='/trier/prenom/<%=objOrdre.prenom%>'><%= __('Prénom') %></a></th>
+ <th><a href='/trier/telephone/<%=objOrdre.telephone%>'><%= __('Téléphone') %></a></th>
+ <th><a href='/trier/courriel/<%=objOrdre.courriel%>'><%= __('Courriel') %></a></th>
  <th><i class="far fa-trash-alt"></i></th> 
  </tr>
  <% adresses.forEach(elm => {%>
