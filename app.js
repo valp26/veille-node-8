@@ -4,7 +4,7 @@ var app = express();
 app.use(express.static('public'));
 
 /*Configuration de body parser*/
-const bodyParser= require('body-parser');
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 
 /* on associe le moteur de vue au module «ejs» */
@@ -13,6 +13,20 @@ const MongoClient = require('mongodb').MongoClient;
 
 /*Permet d'accéder à l’index  automatique  « _id »*/
 const ObjectID = require('mongodb').ObjectID;
+
+const util = require("util");
+/*on associe le moteur de vue au module «ejs»*/
+const cookieParser = require('cookie-parser');
+app.use(cookieParser())
+
+app.use(express.static('public'));
+const i18n = require('i18n');
+i18n configure({
+	locales : ['fr', 'en'],
+	cookie : 'langueChoisie',
+	directory : __dirname + '/locales' })
+
+app.use(i18n.init);
 
 let db // variable qui contiendra le lien sur la BD
 
