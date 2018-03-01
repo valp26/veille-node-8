@@ -1,6 +1,9 @@
 /*Configuration d'express*/
 const express = require('express');
+const cookieParser = require('cookie-parser');
 var app = express();
+app.use(cookieParser());
+
 app.use(express.static('public'));
 
 /*Configuration de body parser*/
@@ -14,17 +17,15 @@ const MongoClient = require('mongodb').MongoClient;
 /*Permet d'accéder à l’index  automatique  « _id »*/
 const ObjectID = require('mongodb').ObjectID;
 
-const util = require("util");
 /*on associe le moteur de vue au module «ejs»*/
-const cookieParser = require('cookie-parser');
-app.use(cookieParser())
+const util = require("util");
 
 app.use(express.static('public'));
 const i18n = require('i18n');
-i18n configure({
+i18n.configure({
 	locales : ['fr', 'en'],
 	cookie : 'langueChoisie',
-	directory : __dirname + '/locales' })
+	directory : __dirname + '/locales' });
 
 app.use(i18n.init);
 
@@ -42,7 +43,7 @@ const peupler = require("./mes_modules/peupler/index.js");
 app.get('/:lang(en|fr)', function (req, res) {
 	console.log("req.params.local = " + req.params.lang)
 	res.cookie('langueChoisie', req.params.lang)
-	//res.setLocale(req.params.lang)
+	res.setLocale(req.params.lang)
 	console.log(res.__('courriel'))
 	res.render('accueil.ejs')
 });
