@@ -45,7 +45,7 @@ app.get('/:lang(en|fr)', function (req, res) {
 	res.cookie('langueChoisie', req.params.lang)
 	res.setLocale(req.params.lang)
 	console.log(res.__('courriel'))
-	res.render('accueil.ejs')
+	res.redirect('back');
 });
 
 app.get('/', function (req, res) {
