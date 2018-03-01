@@ -34,10 +34,24 @@ let db // variable qui contiendra le lien sur la BD
 const peupler = require("./mes_modules/peupler/index.js");
 
 ////////////////////////////////// route accueil
-app.get('/', function (req, res) {
+/*app.get('/', function (req, res) {
 	// affiche le contenu du gabarit accueil
 	res.render('accueil.ejs');
-})
+})*/
+
+app.get('/:lang(en|fr)', function (req, res) {
+	console.log("req.params.local = " + req.params.lang)
+	res.cookie('langueChoisie', req.params.lang)
+	//res.setLocale(req.params.lang)
+	console.log(res.__('courriel'))
+	res.render('accueil.ejs')
+});
+
+app.get('/', function (req, res) {
+	console.log("req.cookies.langueChoisie = " + req.cookies.langueChoisie)
+	console.log(res.__('courriel'))
+	res.render('accueil.ejs')
+});
 
 ////////////////////////////////// route adresses
 app.get('/adresse', function (req, res) {
